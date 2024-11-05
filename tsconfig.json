@@ -1,23 +1,11 @@
 {
-  "extends": "fastify-tsconfig",
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "include": ["src"],
   "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "./dist",
-    "noImplicitAny": true,
+    "lib": ["ESNext"],
+    "target": "ES2022",
     "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "./src/**/*.ts"
-  ]
+    "outDir": "dist",
+    "baseUrl": "src"
+  }
 }

@@ -13,6 +13,7 @@ $ npm run install
 ## Usage
 
 ### Development
+
 ```bash
 # Required: typescript watch compilation
 $ npm run watch

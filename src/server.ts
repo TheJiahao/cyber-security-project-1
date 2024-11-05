@@ -4,7 +4,11 @@ import fastify from "fastify";
 import router from "router";
 
 const server = fastify({
-    logger: !!(process.env.NODE_ENV !== "development"),
+    logger: {
+        transport: {
+            target: "@fastify/one-line-logger",
+        },
+    },
 });
 
 server.register(fastifyView, {

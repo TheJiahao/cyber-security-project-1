@@ -1,7 +1,8 @@
 import { FastifyInstance } from "fastify";
+import { getView } from "utils/getView";
 
 export default function indexController(fastify: FastifyInstance) {
     fastify.get("/", (_, reply) => {
-        return reply.viewAsync("src/layouts/index.ejs");
+        return reply.viewAsync(getView("index.ejs"));
     });
 }

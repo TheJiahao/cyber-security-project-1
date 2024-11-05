@@ -1,5 +1,5 @@
-import indexController from "controllers/indexController";
-import userController from "controllers/userController";
+import indexController from "routes/homeRoute";
+import userController from "routes/userRoute";
 import { FastifyInstance } from "fastify";
 
 export default function router(fastify: FastifyInstance) {

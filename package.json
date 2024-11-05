@@ -2,10 +2,13 @@
   "name": "cyber-secyrity-project-1",
   "version": "0.1.0",
   "description": "Fastify TypeScript starter repository",
+  "type": "module",
   "scripts": {
     "watch": "tsc --watch --preserveWatchOutput --pretty",
     "dev": "cross-env NODE_ENV=development nodemon",
     "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build": "rimraf dist && tsc",
     "start": "node dist/index.js"
   },
@@ -16,15 +19,19 @@
     "fastify": "^5.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.14.0",
     "@types/node": "^22.9.0",
     "cross-env": "^7.0.3",
+    "eslint": "^9.14.0",
     "fastify-tsconfig": "^2.0.0",
+    "globals": "^15.12.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "rimraf": "^5.0.7",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.13.0"
   },
   "packageManager": "pnpm@8.15.3+sha1.64838798f519c18029c1e8a1310e16101fc2eda0"
 }

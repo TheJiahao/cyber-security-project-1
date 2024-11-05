@@ -1,0 +1,13 @@
+https://github.com/TheJiahao/cyber-security-project-1
+
+Flaws from OWASP 2021
+
+Broken Access Control:
+
+Cryptographic Failures:
+
+Injection:
+
+Identification and Authentication Failures:
+
+Server-Side Request Forgery (SSRF):

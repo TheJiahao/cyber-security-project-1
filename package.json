@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "watch": "tsc --watch --preserveWatchOutput --pretty",
-        "dev": "cross-env NODE_ENV=development nodemon",
+        "dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
         "format": "prettier --write .",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -28,11 +28,11 @@
         "eslint": "^9.14.0",
         "fastify-tsconfig": "^2.0.0",
         "globals": "^15.12.0",
-        "nodemon": "^3.1.7",
         "prettier": "^3.3.3",
         "prettier-plugin-organize-imports": "^4.1.0",
         "rimraf": "^5.0.7",
         "tsconfig-paths": "^4.2.0",
+        "tsx": "^4.19.2",
         "typescript": "^5.6.3",
         "typescript-eslint": "^8.13.0"
     },

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+    <%- include("header.ejs", {title: "Login" }) %>
+    
+    <body>
+        <h1>Login</h1>
+        <form method="post" action="/user/auth">
+            <div>
+                <label for="username">username</label>
+                <input type="text" name="username" id="username" />
+            </div>
+
+            <div>
+                <label for="password">password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

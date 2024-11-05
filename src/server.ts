@@ -1,4 +1,5 @@
 import fastifyFormbody from "@fastify/formbody";
+import fastifyJwt from "@fastify/jwt";
 import fastifyView from "@fastify/view";
 import ejs from "ejs";
 import fastify from "fastify";
@@ -18,6 +19,7 @@ server.register(fastifyView, {
     },
 });
 server.register(fastifyFormbody);
+server.register(fastifyJwt, { secret: "somesecret" });
 server.register(router);
 
 export default server;

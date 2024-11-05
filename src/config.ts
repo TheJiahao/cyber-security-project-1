@@ -1,1 +1,1 @@
-export const VIEW_DIRECTORY = "src/layouts";
+export const VIEW_DIRECTORY = "src/views";

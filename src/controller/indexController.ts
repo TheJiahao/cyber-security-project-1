@@ -1,19 +1,7 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import { promises } from "fs";
-import { resolve } from "path";
+import { FastifyInstance } from "fastify";
 
-const { readFile } = promises;
-
-export default async function indexController(fastify: FastifyInstance) {
-    // GET /
-    fastify.get(
-        "/",
-        async function (_request: FastifyRequest, reply: FastifyReply) {
-            const indexHtmlPath = resolve(__dirname, "../../static/index.html");
-            const indexHtmlContent = await readFile(indexHtmlPath);
-            reply
-                .header("Content-Type", "text/html; charset=utf-8")
-                .send(indexHtmlContent);
-        },
-    );
+export default function indexController(fastify: FastifyInstance) {
+    fastify.get("/", (_, reply) => {
+        return reply.viewAsync("static/index.ejs");
+    });
 }

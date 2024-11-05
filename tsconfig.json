@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
+  "extends": "fastify-tsconfig",
   "include": ["src"],
   "compilerOptions": {
     "module": "ESNext",
@@ -9,6 +9,5 @@
     "outDir": "dist",
     "baseUrl": "src",
     "moduleResolution": "Bundler",
-    "noPropertyAccessFromIndexSignature": false
   }
 }

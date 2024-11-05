@@ -1,7 +1,7 @@
 import fastifyView from "@fastify/view";
 import ejs from "ejs";
 import fastify from "fastify";
-import router from "utils/router";
+import { router } from "routes";
 
 const server = fastify({
     logger: {

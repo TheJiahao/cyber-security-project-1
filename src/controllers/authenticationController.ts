@@ -10,14 +10,16 @@ export const authenticationController: FastifyPluginCallback = (fastify) => {
     fastify.post(
         "/",
         async (request: FastifyRequest<{ Body: UserCredential }>, reply) => {
-            const { username } = request.body;
+            const { username, password } = request.body;
 
             const user = await database.user.findUnique({
                 where: { username },
             });
 
-            if (!user) {
-                reply.code(400);
+            const passwordCorrect = user ? user.password === password : false;
+
+            if (!(user && passwordCorrect)) {
+                reply.code(401).send({ error: "Invalid token" });
                 return;
             }
 

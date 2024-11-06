@@ -14,21 +14,20 @@ const server = fastify({
             target: "@fastify/one-line-logger",
         },
     },
-});
-
-server.register(fastifyView, {
-    engine: {
-        ejs,
-    },
-});
-server.register(fastifyFormbody);
-server.register(fastifyJwt, { secret: "somesecret" });
-server.register(fastifyBearerAuth, {
-    addHook: false,
-    keys: KEYS,
-    verifyErrorLogLevel: "debug",
-});
-server.register(fastifyAuth);
-server.register(router);
+})
+    .register(fastifyView, {
+        engine: {
+            ejs,
+        },
+    })
+    .register(fastifyFormbody)
+    .register(fastifyJwt, { secret: "somesecret" })
+    .register(fastifyBearerAuth, {
+        addHook: false,
+        keys: KEYS,
+        verifyErrorLogLevel: "debug",
+    })
+    .register(fastifyAuth)
+    .register(router);
 
 export default server;

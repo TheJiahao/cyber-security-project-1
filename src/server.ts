@@ -1,9 +1,8 @@
 import fastifyAuth from "@fastify/auth";
-import fastifyBearerAuth from "@fastify/bearer-auth";
+import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyJwt from "@fastify/jwt";
 import fastifyView from "@fastify/view";
-import { KEYS } from "config";
 import ejs from "ejs";
 import fastify from "fastify";
 import { router } from "routes";
@@ -22,10 +21,10 @@ const server = fastify({
     })
     .register(fastifyFormbody)
     .register(fastifyJwt, { secret: "somesecret" })
-    .register(fastifyBearerAuth, {
-        addHook: false,
-        keys: KEYS,
-        verifyErrorLogLevel: "debug",
+    .register(fastifyCookie, {
+        secret: "someSecret",
+        hook: "onRequest",
+        parseOptions: {},
     })
     .register(fastifyAuth)
     .register(router);

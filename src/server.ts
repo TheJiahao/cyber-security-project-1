@@ -20,11 +20,20 @@ const server = fastify({
         },
     })
     .register(fastifyFormbody)
-    .register(fastifyJwt, { secret: "somesecret" })
+    .register(fastifyJwt, {
+        secret: "somesecret",
+        cookie: {
+            cookieName: "token",
+            signed: false,
+        },
+    })
     .register(fastifyCookie, {
         secret: "someSecret",
         hook: "onRequest",
-        parseOptions: {},
+        parseOptions: {
+            httpOnly: true,
+            path: "/",
+        },
     })
     .register(fastifyAuth)
     .register(router);

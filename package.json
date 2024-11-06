@@ -18,7 +18,6 @@
     "private": true,
     "dependencies": {
         "@fastify/auth": "^5.0.1",
-        "@fastify/bearer-auth": "^10.0.1",
         "@fastify/cookie": "^11.0.1",
         "@fastify/formbody": "^8.0.1",
         "@fastify/jwt": "^9.0.1",

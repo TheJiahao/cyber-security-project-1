@@ -21,7 +21,8 @@ export const registrationController: FastifyPluginCallback = (fastify) => {
 
             const token = fastify.jwt.sign({ username });
 
-            reply.send({ token });
+            reply.cookie("token", token);
+            reply.redirect("/");
         },
     );
 };

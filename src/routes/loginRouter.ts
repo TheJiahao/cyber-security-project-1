@@ -4,6 +4,6 @@ import { getView } from "utils/getView";
 export const loginRouter = (fastify: FastifyInstance) => {
     fastify.get(
         "/",
-        async (_, reply) => await reply.viewAsync(getView("login.ejs")),
+        async (_, reply) => await reply.viewAsync(getView("loginPage.ejs")),
     );
 };

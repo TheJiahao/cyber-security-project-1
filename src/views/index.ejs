@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="en">
     <body>
-        <nav>
+        <nav style="display:flex;flex-direction: row;gap:0.5rem;">
             <% if (user) { %>
                 <a href=<%= `/user/${user.username}` %>><%= user.username %></a>
+                <form action="/logout" method="post">
+                    <button type="submit">Log out</a>
+                </form>
             <% } else { %>
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>

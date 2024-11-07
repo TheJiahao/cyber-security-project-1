@@ -5,12 +5,18 @@ Flaws from OWASP 2021
 A01:2021 – Broken Access Control:
 
 A02:2021 – Cryptographic Failures:
-Passwords are stored in database and transmitted over HTTP in clear text.
-To fix the problem, store only salted password hashes and configure HTTPS for the server.
-<Link to source>
+Passwords and tokens are transmitted over HTTP in clear text.
+To fix it, configure HTTPS for the server to transmit encrypted passwords and tokens.
 
 A03:2021 – Injection:
 
 A07:2021 – Identification and Authentication Failures:
+Passwords are stored as clear text. Additionally authentication requests have no rate limits.
+Therefore brute force attacks are possible.
+To fix the clear text problem, store only hashed version of passwords. For example, use bcrypt to hash the password.
+To prevent brute force attacks, use a slow hash function, like bcrypt, in authentication.
+The bcrypt can be configured to run slow, such as 200 ms each time, for automated attack but fast enough for real users.
+Hashing: <Link to source>
+Comparing password hash: <Link to source>
 
 A10:2021 – Server-Side Request Forgery (SSRF):

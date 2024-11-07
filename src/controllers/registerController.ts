@@ -18,7 +18,9 @@ export const registerController: FastifyPluginCallback = (fastify) => {
                 await database.user.create({
                     data: { username, password },
                 });
-            } catch {
+            } catch (error) {
+                console.log(error);
+
                 reply.code(400).send({
                     error: "Registration failed, use another username",
                 });

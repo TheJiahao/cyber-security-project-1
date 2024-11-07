@@ -20,6 +20,14 @@ export const loginController: FastifyPluginCallback = (fastify) => {
 
             const passwordCorrect = user ? user.password === password : false;
 
+            /*
+            Hashed solution
+
+            const passwordCorrect = user
+                ? await bcrypt.compare(password, user.password)
+                : false;
+            */
+
             if (!(user && passwordCorrect)) {
                 reply.code(401).send({ error: "Invalid token" });
                 return;

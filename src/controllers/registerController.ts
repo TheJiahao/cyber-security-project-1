@@ -16,7 +16,15 @@ export const registerController: FastifyPluginCallback = (fastify) => {
 
             try {
                 await database.user.create({
-                    data: { username, password },
+                    data: {
+                        username,
+                        password,
+                        /*
+                        Hashed solution
+
+                        password: await bcrypt.hash(password, 10), 
+                        */
+                    },
                 });
             } catch (error) {
                 console.log(error);

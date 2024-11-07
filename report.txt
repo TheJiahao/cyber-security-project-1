@@ -5,6 +5,9 @@ Flaws from OWASP 2021
 Broken Access Control:
 
 Cryptographic Failures:
+Passwords are stored in database and transmitted over HTTP in clear text.
+To fix the problem, store only salted password hashes and configure HTTPS for the server.
+<Link to source>
 
 Injection:
 

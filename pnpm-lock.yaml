@@ -48,6 +48,9 @@ importers:
       '@eslint/js':
         specifier: ^9.14.0
         version: 9.14.0
+      '@types/bcrypt':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@types/ejs':
         specifier: ^3.1.5
         version: 3.1.5
@@ -375,6 +378,9 @@ packages:
 
   '@punkish/fastify-better-sqlite3@1.0.2':
     resolution: {integrity: sha512-MgLJq6FNFj3cmGJFXLWf1lWsIJfuK2lnONN3lZQFHpLxg7jhZnw0+EL7FUoYUeSim3fCcJLN/gWVRuwtHu3vMw==}
+
+  '@types/bcrypt@5.0.2':
+    resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
 
   '@types/ejs@3.1.5':
     resolution: {integrity: sha512-nv+GSx77ZtXiJzwKdsASqi+YQ5Z7vwHsTP0JY2SiQgjGckkBRKZnk8nIM+7oUZ1VCtuTz0+By4qVR7fqzp/Dfg==}
@@ -1709,6 +1715,10 @@ snapshots:
     dependencies:
       better-sqlite3: 8.7.0
       fastify-plugin: 4.5.1
+
+  '@types/bcrypt@5.0.2':
+    dependencies:
+      '@types/node': 22.9.0
 
   '@types/ejs@3.1.5': {}
 

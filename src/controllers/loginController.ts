@@ -2,7 +2,7 @@ import { FastifyPluginCallback, FastifyRequest } from "fastify";
 import { database } from "utils/database";
 import { UserCredential } from "../interfaces/UserCredential";
 
-export const authenticationController: FastifyPluginCallback = (fastify) => {
+export const loginController: FastifyPluginCallback = (fastify) => {
     fastify.post(
         "/",
         async (request: FastifyRequest<{ Body: UserCredential }>, reply) => {

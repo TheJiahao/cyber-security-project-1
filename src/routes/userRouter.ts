@@ -1,4 +1,4 @@
-import { authenticationController } from "controllers/authenticationController";
+import { loginController } from "controllers/loginController";
 import { registrationController } from "controllers/registrationController";
 import { FastifyPluginCallback } from "fastify";
 
@@ -7,6 +7,6 @@ export const userRouter: FastifyPluginCallback = (fastify) => {
         reply.send({ message: "User" });
     });
 
-    fastify.register(authenticationController, { prefix: "/auth" });
+    fastify.register(loginController, { prefix: "/auth" });
     fastify.register(registrationController, { prefix: "/register" });
 };

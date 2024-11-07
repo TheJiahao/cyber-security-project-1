@@ -3,7 +3,6 @@ import { userRouter } from "routes/userRouter";
 import { database } from "utils/database";
 import { getView } from "utils/getView";
 import { authenticationRouter } from "./authenticationRouter";
-import { registerRouter } from "./registerRouter";
 
 export const router = (fastify: FastifyInstance) => {
     fastify.get("/", async (request, reply) => {
@@ -23,6 +22,5 @@ export const router = (fastify: FastifyInstance) => {
     });
 
     fastify.register(userRouter, { prefix: "/user" });
-    fastify.register(authenticationRouter, { prefix: "/login" });
-    fastify.register(registerRouter, { prefix: "/register" });
+    fastify.register(authenticationRouter, { prefix: "/" });
 };

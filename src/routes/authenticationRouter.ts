@@ -1,9 +1,8 @@
+import { loginController } from "controllers/loginController";
+import { registerController } from "controllers/registerController";
 import { FastifyInstance } from "fastify";
-import { getView } from "utils/getView";
 
 export const authenticationRouter = (fastify: FastifyInstance) => {
-    fastify.get(
-        "/",
-        async (_, reply) => await reply.viewAsync(getView("loginPage.ejs")),
-    );
+    fastify.register(loginController, { prefix: "/login" });
+    fastify.register(registerController, { prefix: "/register" });
 };

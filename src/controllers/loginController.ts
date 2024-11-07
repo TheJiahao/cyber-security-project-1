@@ -1,8 +1,14 @@
 import { FastifyPluginCallback, FastifyRequest } from "fastify";
 import { database } from "utils/database";
+import { getView } from "utils/getView";
 import { UserCredential } from "../interfaces/UserCredential";
 
 export const loginController: FastifyPluginCallback = (fastify) => {
+    fastify.get(
+        "/",
+        async (_, reply) => await reply.viewAsync(getView("loginPage.ejs")),
+    );
+
     fastify.post(
         "/",
         async (request: FastifyRequest<{ Body: UserCredential }>, reply) => {

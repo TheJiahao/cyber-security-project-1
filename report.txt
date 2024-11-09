@@ -3,6 +3,10 @@ https://github.com/TheJiahao/cyber-security-project-1
 Flaws from OWASP 2021
 
 A01:2021 – Broken Access Control:
+<Link to source>
+The API route that handles user description modification does not verify identity of user.
+To fix it, verify JWT token in the cookies and check that the user has access to modify description.
+Fix: <Link to source>
 
 A02:2021 – Cryptographic Failures:
 Passwords and tokens are transmitted over HTTP in clear text.

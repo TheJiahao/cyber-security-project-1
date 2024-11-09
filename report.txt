@@ -16,6 +16,7 @@ In this project the latter is easier because the template engine provides the ut
 Fix: <Link to source>
 
 A07:2021 – Identification and Authentication Failures:
+<Link to source>
 Passwords are stored as clear text. Additionally authentication requests have no rate limits.
 Therefore brute force attacks are possible.
 To fix the clear text problem, store only hashed version of passwords. For example, use bcrypt to hash the password.

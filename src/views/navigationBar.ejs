@@ -1,5 +1,6 @@
 <nav style="display:flex;flex-direction: row;gap:0.5rem;">
     <% if (user) { %>
+        <a href="/">Home</a>
         <a href=<%= `/user/${user.username}` %>><%= user.username %></a>
         <form action="/logout" method="post">
             <button type="submit">Log out</a>

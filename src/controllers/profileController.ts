@@ -40,7 +40,7 @@ export const profileController: FastifyPluginCallback = (fastify) => {
                 },
             });
 
-            reply.redirect("/:username");
+            reply.redirect(request.url);
         },
     );
 };

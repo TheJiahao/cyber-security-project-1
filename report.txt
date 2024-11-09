@@ -9,6 +9,11 @@ Passwords and tokens are transmitted over HTTP in clear text.
 To fix it, configure HTTPS for the server to transmit encrypted passwords and tokens.
 
 A03:2021 – Injection:
+<Link to source>
+The user profile page displays user-submitted description as raw HTML which is vulnerable to cross-site scripting (XSS).
+To fix it either sanitize user input before saving to database or escape dangerous symbols, such as "<" and ">", in the description string before showing it.
+In this project the latter is easier because the template engine provides the utility.
+Fix: <Link to source>
 
 A07:2021 – Identification and Authentication Failures:
 Passwords are stored as clear text. Additionally authentication requests have no rate limits.

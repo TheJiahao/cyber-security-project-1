@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+    <body>
+        <%- include("navigationBar.ejs", { user }) %>
+
+        <h1><%= user.username %></h1>
+        <p>
+            <%= user.description %>
+        </p>
+    </body>
+</html>

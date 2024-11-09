@@ -2,13 +2,14 @@ import { FastifyPluginCallback, FastifyRequest } from "fastify";
 import { database } from "utils/database";
 import { getView } from "utils/getView";
 
+interface ParamsType {
+    username: string;
+}
+
 export const profileController: FastifyPluginCallback = (fastify) => {
     fastify.get(
         "/:username",
-        async (
-            request: FastifyRequest<{ Params: { username: string } }>,
-            reply,
-        ) => {
+        async (request: FastifyRequest<{ Params: ParamsType }>, reply) => {
             const { username } = request.params;
 
             const user = await database.user.findUnique({

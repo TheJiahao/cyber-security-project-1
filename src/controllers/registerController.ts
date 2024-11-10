@@ -2,6 +2,7 @@ import { FastifyPluginCallback, FastifyRequest } from "fastify";
 import { database } from "utils/database";
 import { getView } from "utils/getView";
 import { UserCredential } from "../interfaces/UserCredential";
+// import bcrypt from "bcrypt";
 
 export const registerController: FastifyPluginCallback = (fastify) => {
     fastify.get(

@@ -1,2 +1,2 @@
 export const VIEW_DIRECTORY = "src/views";
-export const KEYS = new Set(["someKey"]);
+export const SECRET_KEY = "1234";

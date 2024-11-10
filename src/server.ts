@@ -2,6 +2,7 @@ import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyJwt from "@fastify/jwt";
 import fastifyView from "@fastify/view";
+import { SECRET_KEY } from "config";
 import ejs from "ejs";
 import fastify from "fastify";
 import { router } from "routes";
@@ -20,14 +21,14 @@ const server = fastify({
     })
     .register(fastifyFormbody)
     .register(fastifyJwt, {
-        secret: "somesecret",
+        secret: SECRET_KEY,
         cookie: {
             cookieName: "token",
             signed: false,
         },
     })
     .register(fastifyCookie, {
-        secret: "someSecret",
+        secret: SECRET_KEY,
         hook: "onRequest",
         parseOptions: {
             httpOnly: true,

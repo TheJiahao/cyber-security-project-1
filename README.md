@@ -1,36 +1,45 @@
-# Fastify & Typescript App
+# Cyber security base project 1
 
-> Fastify & TypeScript starter repository.
+A simple vulnerable web app with login/logout and user profile pages.
 
 ## Installation
 
-```bash
-$ git clone https://github.com/Matschik/fastify-typescript-starter.git
-$ cd fastify-typescript-starter
-$ npm run install
-```
+- Install Node LTS v20.17.0 or newer (probably works) with a package manager (Homebrew (Mac), apt (Linux/Ubuntu), scoop (Windows), etc.) or download and use the installer from https://nodejs.org
+  For apt in Ubuntu, run:
 
-## Usage
+    ```console
+    sudo apt install nodejs
+    ```
 
-### Development
+- Install pnpm with corepack or any method listed in https://pnpm.io/installation
+  With corepack (shipped with Node) run:
 
-```bash
-# Required: typescript watch compilation
-$ npm run watch
+    ```console
+    sudo corepack corepack enable
+    ```
 
-# Required: development server with hot reload (nodemon)
-$ npm run dev
+- Install dependencies:
 
-# Format with prettier
-$ npm run format
-```
+    ```console
+    pnpm install
+    ```
 
-### Production
+- Clone the repository:
 
-```bash
-# build for production
-$ npm run build
+    ```console
+    git clone git@github.com:TheJiahao/cyber-security-project-1.git
+    ```
 
-# start production app
-$ npm run start
-```
+## Running the application
+
+- Initialize database:
+
+    ```console
+    pnpm run init:db
+    ```
+
+- Run the server:
+
+    ```console
+    pnpm run dev
+    ```

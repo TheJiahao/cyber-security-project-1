@@ -1,6 +1,23 @@
-https://github.com/TheJiahao/cyber-security-project-1
+Link to repository: https://github.com/TheJiahao/cyber-security-project-1
+Installation (see README.md for better formatting):
+- Install Node LTS v20.17.0 or newer (probably works) with a package manager (Homebrew (Mac), apt (Linux/Ubuntu), scoop (Windows), etc.) or download and use the installer from https://nodejs.org
+  For apt in Ubuntu, run:
+    sudo apt install nodejs
+- Install pnpm with corepack or any method listed in https://pnpm.io/installation
+  With corepack (shipped with Node) run:
+    sudo corepack corepack enable
+- Install dependencies:
+    pnpm install
+- Clone the repository:
+    git clone git@github.com:TheJiahao/cyber-security-project-1.git
 
-Flaws from OWASP 2021
+Running the application:
+- Initialize database:
+    pnpm run init:db
+- Run the server:
+    pnpm run dev
+
+The flaws are from OWASP top ten list 2021.
 
 A01:2021 – Broken Access Control:
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/profileController.ts#L36

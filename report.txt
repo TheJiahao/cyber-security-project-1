@@ -3,34 +3,35 @@ https://github.com/TheJiahao/cyber-security-project-1
 Flaws from OWASP 2021
 
 A01:2021 – Broken Access Control:
-<Link to source>
-The API route that handles user description modification does not verify identity of user.
+https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/profileController.ts#L36
+The API route that handles user description modification does not verify the identity of user.
 To fix it, verify JSON Web Token (JWT) in the cookies and check that the user has access to modify description.
-Fix: <Link to source>
+The fix is commented in the source.
 
 A02:2021 – Cryptographic Failures:
 Passwords and tokens are transmitted over HTTP in clear text.
-To fix it, configure HTTPS for the server to transmit encrypted passwords and tokens.
+To fix it, get a TLS/SSL certificate and configure HTTPS using it for the server to transmit encrypted passwords and tokens.
 
 A03:2021 – Injection:
-<Link to source>
+https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/views/profilePage.ejs#L9
 The user profile page displays user-submitted description as raw HTML which is vulnerable to cross-site scripting (XSS).
-To fix it either sanitize user input before saving to database or escape dangerous symbols, such as "<" and ">", in the description string before showing it.
-In this project the latter is easier because the template engine provides the utility.
-Fix: <Link to source>
+To fix it, escape dangerous symbols, such as "<" and ">", in the user input before storing into database or before sending it to an user.
+In this project the latter is easier because the template engine provides such utility.
+The fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/views/profilePage.ejs#L10
 
 A07:2021 – Identification and Authentication Failures:
-<Link to source>
-Passwords are stored as clear text. Additionally authentication requests have no rate limits.
+https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/registerController.ts#L21
+https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/loginController.ts#L21
+Passwords are stored as clear text. Additionally, the authentication requests have no rate limits.
 Therefore brute force attacks are possible.
 To fix the clear text problem, store only hashed version of passwords. For example, use bcrypt to hash the password.
-To prevent brute force attacks, use a slow hash function, like bcrypt, in authentication.
+The hashing fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/registerController.ts#L25
+To prevent brute force attacks, use a slow hash function, such as bcrypt, in authentication.
 The bcrypt can be configured to run slow, such as 200 ms each time, for automated attack but fast enough for real users.
-Hashing: <Link to source>
-Comparing password hash: <Link to source>
+The slow hash comparison fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/loginController.ts#L26
 
 A05:2021 – Security Misconfiguration:
-<Link to source>
+https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L2
 The secret key used for signing JWT and cookies is too weak (1234) and hard coded as clear text in config file.
-To fix it, load the secret key from environment variables and use more difficult key.
-Fix: <Link to source>
+To fix it, load the secret key from environment variables and use a more difficult key.
+Fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L5

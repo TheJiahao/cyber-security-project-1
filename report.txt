@@ -31,7 +31,7 @@ POST http://127.0.0.1:3006/user/admin HTTP/1.1
 Content-Type: application/json
 
 {
-    "description": "<script>alert('this is XSS attack')</script>"
+    "description": "<script>alert('this is also an XSS attack')</script>"
 }
 
 To fix it, check that there is a JSON Web Token (JWT) in the cookies and check that the user has access to modify description.
@@ -39,13 +39,15 @@ The fix is commented in the source: https://github.com/TheJiahao/cyber-security-
 
 A02:2021 – Cryptographic Failures:
 Passwords and tokens are transmitted over HTTP in clear text.
-To check the flaw, capture traffic between your computer and the server with Wireshark or something similar.
+Therefore a man-in-the-middle attack is possible. Practically, capture traffic between your computer and the server with Wireshark or something similar.
 To fix it, get a TLS/SSL certificate and configure HTTPS using it for the server to transmit encrypted passwords and tokens.
 
 A03:2021 – Injection:
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/views/profilePage.ejs#L9
 The user profile page displays user-submitted description as raw HTML which is vulnerable to cross-site scripting (XSS).
-The make an attack, register a user and set description to "<script>alert('this is XSS attack')</script>" or send the POST request described previously.
+The make an attack, register a user and set description to "<script>alert('this is XSS attack')</script>".
+Combined with the broken access control vulnerability described previously, the attacker can run the script on every user's profile page.
+
 To fix it, escape dangerous symbols, such as "<" and ">", in the user input before storing into database and before sending it to an user.
 In this project the latter fix (the template engine provides it) is in: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/views/profilePage.ejs#L10
 The former fix requires trying different packages (can be found with keyword "sanitize") and is therefore omitted here.
@@ -55,6 +57,7 @@ https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f721
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/loginController.ts#L21
 Passwords are stored as clear text. Utilising this in an attack requires access to the database file in the server.
 However, the authentication requests have no rate limits. Therefore brute force attack, i.e. trying common or weak passwords with a script, is possible.
+
 The following bcrypt-based fix fixes both problems. To fix the clear text problem, store only hashed version of passwords. For example, use bcrypt to hash the password.
 The hashing fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/registerController.ts#L25
 To prevent brute force attacks, use a slow hash function, such as bcrypt, in authentication.
@@ -64,11 +67,16 @@ The slow hash comparison fix: https://github.com/TheJiahao/cyber-security-projec
 A05:2021 – Security Misconfiguration:
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L2
 The secret key (1234) used for signing JWT and cookies is too weak and hard coded as clear text in config file.
-To make an attack with this:
-- Register an user and get the JWT token from cookies
-- Decode the token with https://10015.io/tools/jwt-encoder-decoder to get payload format and algorithm
-- Encode the payload with replaced username and the weak secret key, this step can done automatically with common secret keys
-- Set the token in cookies to the new token
-- Do something bad with the fake token
-To fix it, load the secret key from environment variables and use a more difficult key.
+The following example attack is slightly complicated but possible to be done automatically.
+1. Register an user and get the token from the server response or read it from cookies.
+2. Decode the token, for example with https://10015.io/tools/jwt-encoder-decoder
+3. Check the payload format and algorithm.
+5. Change the username field to another user's and encode it with the known secret key and algorithm.
+6. Replace the token in cookies with the fake token.
+7. Now, the access of another user is gained.
+If the secret key is only known to be weak but not exactly, then the repeat steps from 5. automatically with a script until the key is spotted.
+The server has no rate limits as previously described, so brute force attacks like this is also possible.
+
+Since the secret key is known, the expiration time of a token can also be manipulated. Therefore changing it does not fix the problem.
+To fix the problem, load the secret key from environment variables and use a more difficult key.
 Fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L5

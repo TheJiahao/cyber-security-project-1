@@ -26,7 +26,7 @@ The attacks in the essay assumes that there is a user with username and password
 A01:2021 – Broken Access Control:
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/profileController.ts#L36
 The API route that handles user description modification does not verify the identity of user.
-To check the flaw, send the following HTTP POST request (without cookies):
+To exploit the flaw, send the following HTTP POST request (without cookies):
 POST http://127.0.0.1:3006/user/admin HTTP/1.1
 Content-Type: application/json
 
@@ -80,3 +80,7 @@ The server has no rate limits as previously described, so brute force attacks li
 Since the secret key is known, the expiration time of a token can also be manipulated. Therefore changing it does not fix the problem.
 To fix the problem, load the secret key from environment variables and use a more difficult key.
 Fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L5
+
+A04:2021 – Insecure Design
+The server sends user credentials with error message if the attacker tries to register an user with existing username.
+To fix the problem, send only error message without dynamic part if registration failed.

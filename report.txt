@@ -55,11 +55,11 @@ The former fix requires trying different packages (can be found with keyword "sa
 A07:2021 – Identification and Authentication Failures:
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/registerController.ts#L21
 https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/loginController.ts#L21
-Passwords are stored as clear text. Utilising this in an attack requires access to the database file in the server.
+Passwords are stored as clear text. Utilising this in an attack does not require access to the database file in the server, due to the flaw A04:2021 described below.
 However, the authentication requests have no rate limits. Therefore brute force attack, i.e. trying common or weak passwords with a script, is possible.
 
 The following bcrypt-based fix fixes both problems. To fix the clear text problem, store only hashed version of passwords. For example, use bcrypt to hash the password.
-The hashing fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/registerController.ts#L25
+The password hashing fix: https://github.com/TheJiahao/cyber-security-project-1/blob/14cc49e22713d635be88167d3f87eece3aefee0e/src/controllers/registerController.ts#L40
 To prevent brute force attacks, use a slow hash function, such as bcrypt, in authentication.
 The bcrypt can be configured to run slow, such as 200 ms each time, for automated attack but fast enough for real users.
 The slow hash comparison fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/controllers/loginController.ts#L26
@@ -82,5 +82,9 @@ To fix the problem, load the secret key from environment variables and use a mor
 Fix: https://github.com/TheJiahao/cyber-security-project-1/blob/1433f4e50860a24c7f72156ba96bb665a33657e4/src/config.ts#L5
 
 A04:2021 – Insecure Design
-The server sends user credentials with error message if the attacker tries to register an user with existing username.
-To fix the problem, send only error message without dynamic part if registration failed.
+https://github.com/TheJiahao/cyber-security-project-1/blob/14cc49e22713d635be88167d3f87eece3aefee0e/src/controllers/registerController.ts#L26
+The server sends raw user object from database query within error message if registration failed.
+The object contains password in clear text due to the previously described flaw A07:2021.
+To exploit the flaw, select a victim from user list in home page and try to register with its username.
+To fix the problem, remove dynamic part, the user object from database query, from error message for failed registration.
+The fix: https://github.com/TheJiahao/cyber-security-project-1/blob/14cc49e22713d635be88167d3f87eece3aefee0e/src/controllers/registerController.ts#L27

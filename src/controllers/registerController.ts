@@ -15,26 +15,32 @@ export const registerController: FastifyPluginCallback = (fastify) => {
         async (request: FastifyRequest<{ Body: UserCredential }>, reply) => {
             const { username, password } = request.body;
 
-            try {
-                await database.user.create({
-                    data: {
-                        username,
-                        password,
-                        /*
+            const user = await database.user.findUnique({
+                where: {
+                    username,
+                },
+            });
+
+            if (user) {
+                reply.code(400).send({
+                    error: `User ${JSON.stringify(user)} exists, try another`,
+                    //error: "Registration failed, use another username",
+                });
+
+                return;
+            }
+
+            await database.user.create({
+                data: {
+                    username,
+                    password,
+                    /*
                         Hashed solution
 
                         password: await bcrypt.hash(password, 10), 
                         */
-                    },
-                });
-            } catch (error) {
-                console.log(error);
-
-                reply.code(400).send({
-                    error: "Registration failed, use another username",
-                });
-                return;
-            }
+                },
+            });
 
             const token = fastify.jwt.sign({ username });
 

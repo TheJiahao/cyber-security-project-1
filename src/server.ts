@@ -1,4 +1,3 @@
-import fastifyAuth from "@fastify/auth";
 import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyJwt from "@fastify/jwt";
@@ -35,7 +34,6 @@ const server = fastify({
             path: "/",
         },
     })
-    .register(fastifyAuth)
     .register(router);
 
 export default server;

@@ -1,5 +1,6 @@
 import { FastifyPluginCallback, FastifyRequest } from "fastify";
 import { database } from "utils/database";
+// import { getUser } from "utils/getUser";
 import { getView } from "utils/getView";
 
 interface ParamsType {
@@ -31,6 +32,16 @@ export const profileController: FastifyPluginCallback = (fastify) => {
             reply,
         ) => {
             const { username } = request.params;
+
+            /* 
+            const user = await getUser(request);
+
+            if (!(user && user.username === username)) {
+                reply.status(401);
+                return;
+            } 
+            */
+
             const { description } = request.body;
 
             await database.user.update({
